@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+
+<!-- 根据数据库表生成实体类及mapper -->
+<generatorConfiguration>
+    <!-- <properties resource="db.properties" /> -->
+    <classPathEntry location="C:\Users\YanC\.m2\repository\mysql\mysql-connector-java\8.0.18\mysql-connector-java-8.0.18.jar" />
+    <context id="mysql2Beans" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <!-- 删除代码中带有 代码生成器的注释信息 -->
+            <property name="suppressAllComments" value="true" />
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressDate" value="true" />
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/数据库名?useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=TRUE"
+                        userId="root" password="admin" />
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!-- 生成模型的包名和位置 -->
+        <javaModelGenerator targetPackage="com.mycenter.model"
+                            targetProject="src\main\java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="false" />
+            <!-- <property name="trimStrings" value="true" /> -->
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mapper"
+                         targetProject="src\main\resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <javaClientGenerator targetPackage="com.mycenter.mapper"
+                             targetProject="src\main\java" type="XMLMAPPER">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+
+        <table schema="test" tableName="表名"
+               domainObjectName="实体类名" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+    </context>
+</generatorConfiguration>
